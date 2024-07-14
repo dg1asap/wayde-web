@@ -4,10 +4,12 @@ interface ImageCardProps {
   imageUrl: string;
   title: string;
   buttonLabel: string;
+  startDate: string;
+  endDate: string;
   onButtonClick: () => void;
 }
 
-const ImageCard: React.FC<ImageCardProps> = ({ imageUrl, title, buttonLabel, onButtonClick }) => {
+const ImageCard: React.FC<ImageCardProps> = ({ imageUrl, title, buttonLabel, startDate, endDate, onButtonClick }) => {
   const handleButtonClick = () => {
     onButtonClick();
   };
@@ -26,16 +28,16 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageUrl, title, buttonLabel, onB
       
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
         <div style={{ textAlign: 'center', margin: '0 10px' }}>
-          <p style={{ margin: '5px', fontWeight: 'bold' }}>10 kg</p>
-          <p style={{ margin: '5px' }}>Weight</p>
+          <p style={{ margin: '5px', fontWeight: 'bold' }}>10</p>
+          <p style={{ margin: '5px' }}>Influencers</p>
         </div>
         <div style={{ textAlign: 'center', margin: '0 10px' }}>
-          <p style={{ margin: '5px', fontWeight: 'bold' }}>2024-07-15</p>
-          <p style={{ margin: '5px' }}>Data start</p>
+          <p style={{ margin: '5px', fontWeight: 'bold' }}>{startDate}</p>
+          <p style={{ margin: '5px' }}>Influencers</p>
         </div>
         <div style={{ textAlign: 'center', margin: '0 10px' }}>
-          <p style={{ margin: '5px', fontWeight: 'bold' }}>2024-07-30</p>
-          <p style={{ margin: '5px' }}>Data end</p>
+          <p style={{ margin: '5px', fontWeight: 'bold' }}>{endDate}</p>
+          <p style={{ margin: '5px' }}>Influencers</p>
         </div>
       </div>
       
