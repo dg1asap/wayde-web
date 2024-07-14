@@ -15,6 +15,10 @@ const ButtonsBar: React.FC<ButtonsBarProps> = ({
   onTimeClick,
   onAddNewCampaignClick,
 }) => {
+  const handleImageClick = (index: number) => {
+    alert(`Clicked on image ${index}`);
+  };
+
   return (
     <div
       style={{
@@ -40,7 +44,13 @@ const ButtonsBar: React.FC<ButtonsBarProps> = ({
       </div>
       <div style={{ display: 'flex', gap: '10px' }}>
         {images.map((src, index) => (
-          <img key={index} src={src} alt={`Image ${index}`} style={{ width: '30px', height: '30px' }} />
+          <img
+            key={index}
+            src={src}
+            alt={`Image ${index}`}
+            style={{ width: '30px', height: '30px', cursor: 'pointer' }}
+            onClick={() => handleImageClick(index)}
+          />
         ))}
       </div>
     </div>

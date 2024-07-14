@@ -5,6 +5,8 @@ interface Image {
   imageUrl: string;
   title: string;
   buttonLabel: string;
+  startDate: string;
+  endDate: string;
 }
 
 interface ImageListProps {
@@ -43,7 +45,7 @@ const ImageList: React.FC<ImageListProps> = ({ images }) => {
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)', // Po 4 obrazy na jeden rząd
+        gridTemplateColumns: 'repeat(3, 1fr)', // Po 4 obrazy na jeden rząd
         gap: '50px',
         padding: '10px',
         boxSizing: 'border-box',
@@ -56,6 +58,8 @@ const ImageList: React.FC<ImageListProps> = ({ images }) => {
           imageUrl={image.imageUrl}
           title={image.title}
           buttonLabel={image.buttonLabel}
+          startDate={image.startDate}
+          endDate={image.endDate}
           onButtonClick={() => handleAddNewCampaignClick()}
         />
       ))}
