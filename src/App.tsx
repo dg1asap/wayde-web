@@ -5,9 +5,10 @@ import ButtonsBar from './components/ButtonsBar';
 import ImageList from './components/ImageList';
 import CampaignModal from './components/CampaignModal';
 import Calendar from './components/Calendar';
-import Influencers from './components/Influencers'; 
+import Influencers from './components/Influencers';
 import ButtonsBarInfluencers from './components/ButtonsBarInfluencers';
 import AddInfluencerModal from './components/AddInfluencerModal';
+import UserComponent from './UserComponent';
 
 interface Campaign {
   imageUrl: string;
@@ -145,10 +146,10 @@ const App: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <div style={{ display: 'flex' }}>
-        <Sidebar 
-          buttons={buttons} 
-          logout={logout} 
-          imageSrc="https://via.placeholder.com/150" 
+        <Sidebar
+          buttons={buttons}
+          logout={logout}
+          imageSrc="https://via.placeholder.com/150"
           smallImageSrc="https://via.placeholder.com/50"
         />
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', marginLeft: '50px' }}>
@@ -197,6 +198,7 @@ const App: React.FC = () => {
           )}
         </div>
       </div>
+        <UserComponent userId={1}/>
     </div>
   );
 };
