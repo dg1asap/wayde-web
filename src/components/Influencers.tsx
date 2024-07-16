@@ -9,27 +9,11 @@ interface Influencer {
   clients: string[];
 }
 
-const Influencers: React.FC = () => {
-  const influencers: Influencer[] = [
-    {
-      fullName: 'John Doe',
-      campaigns: ['Campaign 1', 'Campaign 2'],
-      owners: ['Owner 1', 'Owner 2'],
-      instagramUrl: 'https://www.instagram.com/johndoe',
-      tiktokUrl: 'https://www.tiktok.com/@johndoe',
-      clients: ['client 1 3', 'client 4 3']
-    },
-    {
-      fullName: 'Jane Smith',
-      campaigns: ['Campaign 3', 'Campaign 4'],
-      owners: ['Owner 3', 'Owner 4'],
-      instagramUrl: 'https://www.instagram.com/janesmith',
-      tiktokUrl: 'https://www.tiktok.com/@janesmith',
-      clients: ['client 1 3', 'client 4 5']
-    }
-    // Dodaj więcej influencerów w razie potrzeby
-  ];
+interface InfluencersProps {
+  influencers: Influencer[];
+}
 
+const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
   return (
     <div style={{ padding: '0px', textAlign: 'center', marginTop: '100px' }}>
       <div style={{ overflowX: 'auto' }}>

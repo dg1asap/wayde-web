@@ -8,6 +8,7 @@ interface ButtonsBarInfluencersProps {
   onWorkStatusClick: () => void;
   onDataOfCreationClick: () => void;
   onCountryClick: () => void;
+  onAddInfluencerClick: () => void;
 }
 
 const ButtonsBarInfluencers: React.FC<ButtonsBarInfluencersProps> = ({
@@ -18,6 +19,7 @@ const ButtonsBarInfluencers: React.FC<ButtonsBarInfluencersProps> = ({
   onWorkStatusClick,
   onDataOfCreationClick,
   onCountryClick,
+  onAddInfluencerClick,
 }) => {
   const handleImageClick = (index: number) => {
     alert(`Clicked on image ${index}`);
@@ -48,8 +50,8 @@ const ButtonsBarInfluencers: React.FC<ButtonsBarInfluencersProps> = ({
         <button onClick={onDataOfCreationClick}>Data of creation</button>
         <button onClick={onCountryClick}>Country</button>
       </div>
-      <div style={{ display: 'flex', gap: '10px' }}>
-        {images.map((src, index) => (
+      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        {images.slice(0, images.length - 1).map((src, index) => (
           <img
             key={index}
             src={src}
@@ -58,6 +60,9 @@ const ButtonsBarInfluencers: React.FC<ButtonsBarInfluencersProps> = ({
             onClick={() => handleImageClick(index)}
           />
         ))}
+        <button onClick={onAddInfluencerClick} style={{ padding: '5px 10px' }}>
+          Add Influencers
+        </button>
       </div>
     </div>
   );
