@@ -1,4 +1,3 @@
-// App Component
 import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -8,6 +7,7 @@ import CampaignModal from './components/CampaignModal';
 import Calendar from './components/Calendar';
 import Influencers from './components/Influencers'; 
 import ButtonsBarInfluencers from './components/ButtonsBarInfluencers';
+import AddInfluencerModal from './components/AddInfluencerModal';
 
 interface Campaign {
   imageUrl: string;
@@ -17,17 +17,46 @@ interface Campaign {
   endDate: string;
 }
 
+interface Influencer {
+  fullName: string;
+  campaigns: string[];
+  owners: string[];
+  instagramUrl: string;
+  tiktokUrl: string;
+  clients: string[];
+}
+
 const App: React.FC = () => {
   const [images, setImages] = useState<Campaign[]>([
     { imageUrl: 'https://via.placeholder.com/150', title: 'Title 1', buttonLabel: 'Button 1', startDate: '2024-07-15', endDate: '2024-07-30' },
     { imageUrl: 'https://via.placeholder.com/150', title: 'Title 2', buttonLabel: 'Button 2', startDate: '2024-07-16', endDate: '2024-07-31' },
     { imageUrl: 'https://via.placeholder.com/150', title: 'Title 3', buttonLabel: 'Button 3', startDate: '2024-07-17', endDate: '2024-08-01' },
-    // Dodaj więcej obiektów tutaj
+    // Add more objects here
   ]);
 
   const [showCampaignModal, setShowCampaignModal] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [showInfluencers, setShowInfluencers] = useState(false);
+  const [showAddInfluencerModal, setShowAddInfluencerModal] = useState(false);
+  const [influencers, setInfluencers] = useState<Influencer[]>([
+    {
+      fullName: 'John Doe',
+      campaigns: ['Campaign 1', 'Campaign 2'],
+      owners: ['Owner 1', 'Owner 2'],
+      instagramUrl: 'https://www.instagram.com/johndoe',
+      tiktokUrl: 'https://www.tiktok.com/@johndoe',
+      clients: ['client 1 3', 'client 4 3']
+    },
+    {
+      fullName: 'Jane Smith',
+      campaigns: ['Campaign 3', 'Campaign 4'],
+      owners: ['Owner 3', 'Owner 4'],
+      instagramUrl: 'https://www.instagram.com/janesmith',
+      tiktokUrl: 'https://www.tiktok.com/@janesmith',
+      clients: ['client 1 3', 'client 4 5']
+    }
+    // Add more influencers as needed
+  ]);
 
   const handleDashboardClick = () => {
     setShowCalendar(false);
@@ -53,9 +82,11 @@ const App: React.FC = () => {
   const handleClientClick = () => {
     alert('Client button clicked');
   };
-  const buttonPresed = () => {
+
+  const buttonPressed = () => {
     alert('button clicked');
   };
+
   const handleStatusClick = () => {
     alert('Status button clicked');
   };
@@ -88,6 +119,18 @@ const App: React.FC = () => {
     setShowCalendar(false);
   };
 
+  const handleAddInfluencerClick = () => {
+    setShowAddInfluencerModal(true);
+  };
+
+  const handleAddInfluencer = (influencer: Influencer) => {
+    setInfluencers([...influencers, influencer]);
+  };
+
+  const handleCloseAddInfluencerModal = () => {
+    setShowAddInfluencerModal(false);
+  };
+
   const buttons = [
     { label: 'Dashboard', onClick: handleDashboardClick },
     { label: 'Influencers', onClick: handleInfluencersClick },
@@ -116,28 +159,42 @@ const App: React.FC = () => {
           />
           <div style={{ flex: 1, overflowY: 'auto', marginTop: '60px' }}>
             {showCalendar && <Calendar />}
-            {showInfluencers && (<><ButtonsBarInfluencers
-              images={["https://via.placeholder.com/200x40", "https://via.placeholder.com/200x40"]}
-              onAssignedOwnerClick={buttonPresed}
-              onCampaignClick={buttonPresed}
-              onClientClick={buttonPresed}
-              onWorkStatusClick={buttonPresed}
-              onDataOfCreationClick={buttonPresed}
-              onCountryClick={buttonPresed}
-            /><Influencers /></>)}
+            {showInfluencers && (
+              <>
+                <ButtonsBarInfluencers
+                  images={["https://via.placeholder.com/200x40", "https://via.placeholder.com/200x40"]}
+                  onAssignedOwnerClick={buttonPressed}
+                  onCampaignClick={buttonPressed}
+                  onClientClick={buttonPressed}
+                  onWorkStatusClick={buttonPressed}
+                  onDataOfCreationClick={buttonPressed}
+                  onCountryClick={buttonPressed}
+                  onAddInfluencerClick={handleAddInfluencerClick}
+                />
+                <Influencers influencers={influencers} />
+              </>
+            )}
 
             {!showCalendar && !showInfluencers && (
-              <> <ButtonsBar
-              images={["https://via.placeholder.com/30", "https://via.placeholder.com/30"]}
-              onClientClick={handleClientClick}
-              onStatusClick={handleStatusClick}
-              onTimeClick={handleTimeClick}
-              onAddNewCampaignClick={handleAddNewCampaignClick}
-            />
+              <>
+                <ButtonsBar
+                  images={["https://via.placeholder.com/30", "https://via.placeholder.com/30"]}
+                  onClientClick={handleClientClick}
+                  onStatusClick={handleStatusClick}
+                  onTimeClick={handleTimeClick}
+                  onAddNewCampaignClick={handleAddNewCampaignClick}
+                />
                 <ImageList images={images} />
-              </>)}
+              </>
+            )}
           </div>
           {showCampaignModal && <CampaignModal onClose={handleCloseCampaignModal} onCancel={handleCancel} />}
+          {showAddInfluencerModal && (
+            <AddInfluencerModal
+              onClose={handleCloseAddInfluencerModal}
+              onAdd={handleAddInfluencer}
+            />
+          )}
         </div>
       </div>
     </div>
