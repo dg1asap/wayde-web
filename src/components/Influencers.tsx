@@ -14,56 +14,60 @@ interface InfluencersProps {
 }
 
 const Influencers: React.FC<InfluencersProps> = ({ influencers }) => {
+  const handlePanelClick = (fullName: string) => {
+    alert(`Clicked on ${fullName}'s panel`);
+  };
+
   return (
-    <div style={{ padding: '0px', textAlign: 'center', marginTop: '100px' }}>
-      <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
-          <thead>
-            <tr style={{ borderBottom: '1px solid #ccc', background: '#f2f2f2' }}>
-              <th style={{ padding: '10px', textAlign: 'left' }}>Full Name</th>
-              <th style={{ padding: '10px', textAlign: 'left' }}>Campaigns</th>
-              <th style={{ padding: '10px', textAlign: 'left' }}>Owners</th>
-              <th style={{ padding: '10px', textAlign: 'left' }}>Instagram URL</th>
-              <th style={{ padding: '10px', textAlign: 'left' }}>TikTok URL</th>
-              <th style={{ padding: '10px', textAlign: 'right', paddingRight: '50px' }}>Client</th>
-            </tr>
-          </thead>
-          <tbody>
-            {influencers.map((influencer, index) => (
-              <tr key={index} style={{ borderBottom: '1px solid #ccc' }}>
-                <td style={{ padding: '10px', textAlign: 'left' }}>{influencer.fullName}</td>
-                <td style={{ padding: '10px', textAlign: 'left' }}>
-                  <ul style={{ margin: 0, padding: 0 }}>
-                    {influencer.campaigns.map((campaign, idx) => (
-                      <li key={idx}>{campaign}</li>
-                    ))}
-                  </ul>
-                </td>
-                <td style={{ padding: '10px', textAlign: 'left' }}>
-                  <ul style={{ margin: 0, padding: 0 }}>
-                    {influencer.owners.map((owner, idx) => (
-                      <li key={idx}>{owner}</li>
-                    ))}
-                  </ul>
-                </td>
-                <td style={{ padding: '10px', textAlign: 'left' }}>
-                  <a href={influencer.instagramUrl} target="_blank" rel="noopener noreferrer">{influencer.instagramUrl}</a>
-                </td>
-                <td style={{ padding: '10px', textAlign: 'left' }}>
-                  <a href={influencer.tiktokUrl} target="_blank" rel="noopener noreferrer">{influencer.tiktokUrl}</a>
-                </td>
-                <td style={{ padding: '10px', textAlign: 'right', paddingRight: '50px' }}>
-                  <ul style={{ margin: 0, padding: 0 }}>
-                    {influencer.clients.map((client, idx) => (
-                      <li key={idx}>{client}</li>
-                    ))}
-                  </ul>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div style={{ 
+      padding: '10px', 
+      marginTop: '100px',
+    }}>
+      {influencers.map((influencer, index) => (
+        <div key={index} style={{ 
+          border: '1px solid #ccc', 
+          borderRadius: '8px', 
+          margin: '20px', 
+          padding: '20px', 
+          display: 'flex',
+          cursor: 'pointer', // Dodajemy kursor wskazujący na możliwość kliknięcia
+        }} onClick={() => handlePanelClick(influencer.fullName)}>
+          <img 
+            src="https://via.placeholder.com/50"  
+            alt={`${influencer.fullName}'s image`} 
+            style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '20px' }}
+          />
+          <div>
+            <h3>{influencer.fullName}</h3>
+            <p><strong>Instagram:</strong> <a href={influencer.instagramUrl} target="_blank" rel="noopener noreferrer">{influencer.instagramUrl}</a></p>
+            <p><strong>TikTok:</strong> <a href={influencer.tiktokUrl} target="_blank" rel="noopener noreferrer">{influencer.tiktokUrl}</a></p>
+          </div>
+          <div style={{ }}>
+            <p><strong>Campaigns:</strong></p>
+            <ul style={{}}>
+              {influencer.campaigns.map((campaign, idx) => (
+                <li key={idx}>{campaign}</li>
+              ))}
+            </ul>
+          </div>
+          <div style={{}}>
+            <p><strong>Owners:</strong></p>
+            <ul style={{}}>
+              {influencer.owners.map((owner, idx) => (
+                <li key={idx}>{owner}</li>
+              ))}
+            </ul>
+          </div>
+          <div style={{ }}>
+            <p><strong>Clients:</strong></p>
+            <ul style={{ margin: '10px 0'}}> 
+              {influencer.clients.map((client, idx) => (
+                <li key={idx}>{client}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

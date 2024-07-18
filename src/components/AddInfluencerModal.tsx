@@ -41,29 +41,29 @@ const AddInfluencerModal: React.FC<AddInfluencerModalProps> = ({ onClose, onAdd 
       backgroundColor: 'white', padding: '20px', borderRadius: '8px', width: '400px', zIndex: 1000,
     }}>
       <h2>Add Influencer</h2>
-      <form onSubmit={(e) => { e.preventDefault(); handleAdd(); }}>
+      <form onSubmit={(e) => { e.preventDefault(); handleAdd(); }} style={{ display: 'flex', flexDirection: 'column' }}>
         <div style={{ marginBottom: '10px' }}>
-          <label>Full Name: </label>
+          <label style={{ display: 'block', marginBottom: '5px' }}>Full Name: </label>
           <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
         </div>
         <div style={{ marginBottom: '10px' }}>
-          <label>Campaigns (comma separated): </label>
+          <label style={{ display: 'block', marginBottom: '5px' }}>Campaigns (comma separated): </label>
           <input type="text" value={campaigns} onChange={(e) => setCampaigns(e.target.value)} required />
         </div>
         <div style={{ marginBottom: '10px' }}>
-          <label>Owners (comma separated): </label>
+          <label style={{ display: 'block', marginBottom: '5px' }}>Owners (comma separated): </label>
           <input type="text" value={owners} onChange={(e) => setOwners(e.target.value)} required />
         </div>
         <div style={{ marginBottom: '10px' }}>
-          <label>Instagram URL: </label>
+          <label style={{ display: 'block', marginBottom: '5px' }}>Instagram URL: </label>
           <input type="text" value={instagramUrl} onChange={(e) => setInstagramUrl(e.target.value)} required />
         </div>
         <div style={{ marginBottom: '10px' }}>
-          <label>TikTok URL: </label>
+          <label style={{ display: 'block', marginBottom: '5px' }}>TikTok URL: </label>
           <input type="text" value={tiktokUrl} onChange={(e) => setTiktokUrl(e.target.value)} required />
         </div>
         <div style={{ marginBottom: '10px' }}>
-          <label>Clients (comma separated): </label>
+          <label style={{ display: 'block', marginBottom: '5px' }}>Clients (comma separated): </label>
           <input type="text" value={clients} onChange={(e) => setClients(e.target.value)} required />
         </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
